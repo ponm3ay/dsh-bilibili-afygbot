@@ -1,0 +1,28 @@
+# 数据（含他人信息，不入库）
+data/
+*.jsonl
+!examples/*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+package-lock.json
+
+# 渲染产物
+*.pdf
+!docs/*.pdf
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时
+*.log
+.tmp/

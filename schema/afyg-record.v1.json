@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dsh.wuwa/afyg-record@1",
+  "title": "Wuthering Waves AFYG (凹分) Record",
+  "description": "一条从 B站 视频中抽取的鸣潮凹分记录。由 dsh-bili-scroll 每轮产出；本仓库的 afyg.py / data.mjs 读取与校验。",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "kinds",
+    "source",
+    "capturedAt",
+    "capturedBy"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema": {
+      "const": "dsh.wuwa/afyg-record@1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^r_[A-Za-z0-9]+_[a-z-]+$",
+      "description": "全局唯一：r_<BV号>_<kinds 用 - 连接>。多实例联邦合并时按此去重。"
+    },
+    "kinds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "rotation",
+          "score"
+        ]
+      },
+      "minItems": 1,
+      "description": "score=记分；rotation=轴/手法。同一视频可两者都有。"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "platform",
+        "bvid",
+        "url",
+        "up"
+      ],
+      "properties": {
+        "platform": {
+          "const": "bilibili"
+        },
+        "bvid": {
+          "type": "string",
+          "pattern": "^BV[0-9A-Za-z]+$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string"
+        },
+        "publishedAt": {
+          "type": "string",
+          "description": "北京时间 YYYY-MM-DD HH:MM"
+        },
+        "ageDays": {
+          "type": "number",
+          "description": "距抓取时的天数；用于时效判断"
+        },
+        "up": {
+          "type": "object",
+          "required": [
+            "homepage"
+          ],
+          "properties": {
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "mid": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "homepage": {
+              "type": "string",
+              "format": "uri",
+              "description": "硬要求：UP 主页链接（https://space.bilibili.com/<mid>）"
+            }
+          }
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "view": {
+              "type": "integer"
+            },
+            "reply": {
+              "type": "integer"
+            },
+            "like": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "team": {
+      "type": "object",
+      "description": "配队。abbr 只在能认出来时填，认不出留空，不猜。",
+      "properties": {
+        "abbr": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "如 绯洛穗 / 露丽莫"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chain": {
+          "type": "string",
+          "description": "共鸣链串，如 0161"
+        },
+        "refinement": {
+          "type": "string",
+          "description": "武器谐振串"
+        },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "character": {
+                "type": "string"
+              },
+              "chain": {
+                "type": "integer"
+              },
+              "weapon": {
+                "type": "string"
+              },
+              "refinement": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "rotation": {
+      "type": "object",
+      "description": "文字轴（手法记谱）。随缘：扒不到就不要这个字段。",
+      "properties": {
+        "hasText": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "原文照抄，不做改写"
+        },
+        "format": {
+          "enum": [
+            "notation",
+            "freeform"
+          ]
+        },
+        "where": {
+          "enum": [
+            "comment",
+            "description",
+            "subtitle",
+            "onscreen",
+            "pinned",
+            "video"
+          ],
+          "description": "记谱出处"
+        },
+        "evidenceUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "抽出的记号，供检索/比对"
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "纯数字；标题写没写「分」字都算分"
+        },
+        "unit": {
+          "enum": [
+            "score",
+            "dps",
+            "seconds"
+          ]
+        },
+        "raw": {
+          "type": "string",
+          "description": "原始数字串，不换算"
+        },
+        "mode": {
+          "enum": [
+            "matrix",
+            "toa",
+            "other"
+          ]
+        },
+        "season": {
+          "type": "string",
+          "description": "如 S2-3"
+        },
+        "tier": {
+          "enum": [
+            "wheelchair",
+            "advanced",
+            "peak"
+          ]
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capturedAt": {
+      "type": "string",
+      "description": "ISO 8601"
+    },
+    "capturedBy": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "origin": {
+      "type": "object",
+      "description": "联邦用：哪个实例产出的",
+      "properties": {
+        "instanceId": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "pluginVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

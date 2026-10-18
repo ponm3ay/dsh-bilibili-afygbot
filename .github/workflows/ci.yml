@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 语法检查
+        run: |
+          python -m py_compile src/afyg.py
+          echo "python ok"
+
+      - name: 示例数据校验
+        run: |
+          mkdir -p data
+          python src/afyg.py ingest examples/records.sample.jsonl
+          python src/afyg.py validate
+          python src/afyg.py stats
+
+      - name: Schema 合法性
+        run: |
+          python - <<'PY'
+          import json
+          s = json.load(open('schema/afyg-record.v1.json', encoding='utf-8'))
+          assert s['$id'] == 'dsh.wuwa/afyg-record@1'
+          for k in ('id', 'kinds', 'source', 'capturedAt', 'capturedBy'):
+              assert k in s['required'], k
+          print('schema ok:', s['$id'])
+          PY
+
+      - name: node 语法（data.mjs）
+        run: |
+          node --check src/data.mjs && echo "mjs ok"
