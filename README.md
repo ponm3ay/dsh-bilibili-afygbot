@@ -1,4 +1,4 @@
-# dsh-wuwa-afyg
+# dsh-bilibili-afygbot
 
 > 把 B站 上刷到的**鸣潮凹分（椰果）**视频，沉淀成**结构化、可联邦、可被别的 agent 调用**的数据。
 
@@ -50,8 +50,8 @@ data/records.jsonl      # 一行一条，append-only
 ### 1. 只想要 HTTP 接口（不装插件）
 
 ```bash
-git clone https://github.com/ponm3ay/dsh-wuwa-afyg.git
-cd dsh-wuwa-afyg
+git clone https://github.com/ponm3ay/dsh-bilibili-afygbot.git
+cd dsh-bilibili-afygbot
 python src/afyg.py serve --port 8787
 ```
 

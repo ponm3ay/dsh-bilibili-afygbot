@@ -1043,6 +1043,6 @@ curl -s "http://127.0.0.1:19387/api/bili-duty/v1/teams/绯洛穗"
 
 ---
 
-*本文基于 2026-10-18 ~ 19 的改造实践整理。插件 `dsh-bili-scroll` 0.1.2，MIT 协议。数据层仓库：<https://github.com/ponm3ay/dsh-wuwa-afyg>*
+*本文基于 2026-10-18 ~ 19 的改造实践整理。插件 `dsh-bili-scroll` 0.1.2，MIT 协议。数据层仓库：<https://github.com/ponm3ay/dsh-bilibili-afygbot>*
 
 [![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
