@@ -45,7 +45,35 @@ data/records.jsonl      # 一行一条，append-only
 
 ---
 
-## 快速开始
+## 安装
+
+**两种模式，按你的情况选：**
+
+| 你的情况 | 装法 |
+|---|---|
+| 已经装了 `dsh-bili-scroll` | 直接加装本插件 —— **不改动原插件，它照常从上游更新** |
+| 还没装过 | 先装原插件，再加装本插件 |
+
+```bash
+# 加装（已装原插件的情况）
+dsh plugin --profile desktop add github:ponm3ay/dsh-bilibili-afygbot
+
+# 全新（先原插件，再本插件）
+dsh plugin --profile desktop add dsh-bili-scroll
+dsh plugin --profile desktop add github:ponm3ay/dsh-bilibili-afygbot
+```
+
+装完**完全退出 DSH 再打开**。
+
+> **为什么加装不会影响原插件？**
+> 本插件的 patch 用 `- insert:` 追加自己的 id（`bili-afyg`），不是替换任何现有条目；
+> 它会检测原插件，但**只读不写** —— 章程是旁挂到自己目录的（`$DSH_HOME/bili-afyg/duty.afyg.md`）。
+> 原插件在 profile 里仍是正常 npm 依赖（`^0.1.2`），所以 `dsh plugin update` 照样能升级它。
+
+详细步骤见 [INSTALL.md](INSTALL.md)。
+
+---
+## 快速开始（不需要插件，只要数据层）
 
 ### 1. 只想要 HTTP 接口（不装插件）
 
@@ -171,7 +199,7 @@ for base in ("http://127.0.0.1:8787", "http://其它实例:8787"):
 
 ---
 
-## CLI
+## CLI 命令
 
 ```bash
 python src/afyg.py extract  BV1xxx...     # 抓取并打印（不落盘）
@@ -207,6 +235,10 @@ python src/afyg.py serve    --port 8787
 │   └── afyg-record.v1.json
 ├── charter/
 │   └── duty.zh-CN.md      # 定制章程示例（凹分向，含三档判定）
+├── index.js               # 插件入口（apply / Config）
+├── cordis.patch.yml       # 插件挂载声明（- insert: 追加，不替换）
+├── lib/                   # 插件用的数据层
+├── INSTALL.md             # 两种安装方式详解
 ├── patches/
 │   └── README.md          # 怎么接进 dsh-bili-scroll（含 vendor 覆盖坑）
 ├── docs/

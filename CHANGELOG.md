@@ -38,6 +38,16 @@
 - 术语修正：`S2-3` 是「赛季与期数」（第二赛季第 3 期）；章节标题改为「教它读懂圈内黑话」
 - 补充说明：模型走 DSH 已配置的官方通道，不需要另接第三方 API
 
+### Added
+
+- **可作为 DSH 插件直接安装**（`dsh plugin add`）
+  - `package.json` 带 `dsh.bundle.patch`；`cordis.patch.yml` 用 `- insert:` 追加，不替换任何现有条目
+  - `index.js`：`apply(ctx, cfg)` + `Config`（`enabled` / `dataDir` / `augmentBiliScroll`）
+  - 数据接口挂在 `/api/bili-afyg/v1`，与原插件的 `/api/bili-duty` **互不冲突**
+- **加装模式（augment）**：检测到 `dsh-bili-scroll` 时，旁挂一份凹分向章程到自己的目录，
+  **不改动原插件的任何文件**；原插件仍是正常 npm 依赖（`^0.1.2`），`dsh plugin update` 照常升级
+- **独立模式（standalone）**：只有本插件时也能提供数据层与接口，日志会标明模式
+- `INSTALL.md`：两种安装方式、模式区别、验证方法、卸载
 ### Changed
 
 - 仓库改名：`dsh-wuwa-afyg` → **`dsh-bilibili-afygbot`**（旧地址会 301 跳转）

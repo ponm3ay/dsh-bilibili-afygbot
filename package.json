@@ -1,0 +1,62 @@
+{
+  "name": "dsh-bili-afyg",
+  "version": "0.1.0",
+  "description": "DSH 插件：把 B站 的鸣潮凹分（椰果）视频沉淀成结构化数据。可单装，也可加装在 dsh-bili-scroll 之上（不动它、保留它的上游更新）。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "bilibili",
+    "wuthering-waves",
+    "afyg",
+    "data"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "lib",
+    "schema",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "dsh": ">=0.1.7-rc.1",
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-llm": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ponm3ay/dsh-bilibili-afygbot.git"
+  },
+  "homepage": "https://github.com/ponm3ay/dsh-bilibili-afygbot#readme",
+  "bugs": {
+    "url": "https://github.com/ponm3ay/dsh-bilibili-afygbot/issues"
+  }
+}

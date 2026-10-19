@@ -1,0 +1,19 @@
+# ============================================================================
+# dsh-bili-afyg —— DSH bundle patch（插件自带的挂载声明）
+# ============================================================================
+# ⚠️ 这里用 `- insert:` 而不是替换任何现有条目 ——
+#    所以**不会覆盖、也不会改动 dsh-bili-scroll**。两个插件各占各的 id，
+#    原插件照常从上游更新（它的 patch 按 bundles 顺序先叠，我们后叠）。
+# 组成顺序：每个 bundle 的 patch 按 dsh.profile.bundles 顺序叠
+#          → 再叠 profile 自己那层的 cordis.patch.yml（只有那层热重载）
+# ============================================================================
+
+- insert:
+    - id: bili-afyg
+      name: dsh-bili-afyg
+      config:
+        enabled: true
+        # 数据目录留空 = 用插件家目录下的 data/
+        dataDir: ""
+        # 是否在 dsh-bili-scroll 存在时增强它（只加提示词规则，不改代码）
+        augmentBiliScroll: true
