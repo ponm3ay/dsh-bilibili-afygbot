@@ -109,8 +109,8 @@ id 形如 `r_BV1DRJe6wEGc_rotation-score`。
 | `jsonl`（默认） | 整库 NDJSON，一行一条 |
 | `afyg` | 工程骨架数组（`dsh.wuwa/afyg-project-draft@1`），干跑不发布 |
 
-`afyg` 格式与 [椰果工坊](https://github.com/d4rkOfficial/wuwa-afyg-share/blob/master/docs/api.md) 的
-`teamPreview` 对齐（角色 / 共鸣链 / 武器 / 谐振），便于将来导入工具箱。
+`afyg` 格式产出的是**工程骨架**（含角色 / 共鸣链 / 武器 / 谐振槽位），
+便于日后接入其它平台。
 
 ## POST /v1/records · /v1/export/afyg
 
@@ -123,8 +123,8 @@ id 形如 `r_BV1DRJe6wEGc_rotation-score`。
 设计意图：
 
 - `POST /v1/records` —— 外部写入。别的工具抓到的分也能灌进同一个库（需鉴权 + 去重）。
-- `POST /v1/export/afyg` —— 转成工程并上传到椰果工坊，实现「自动登分 + 自动传轴」。
-  需要工坊的 `POST /api/public/projects` 与作者授权，涉及审核，故未实现。
+- `POST /v1/export/afyg` —— 把记录转成工程骨架并推送到外部平台，实现「自动登分 + 自动传轴」。
+  涉及鉴权、去重与平台侧授权，故未实现。
 
 ---
 

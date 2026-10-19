@@ -31,6 +31,13 @@
 - **文档**
   - `README.md`、`docs/api.md`、`docs/blog.md`（2 万字改造长文）、`docs/onepager.png`
 
+### Docs
+
+- 显著位置署名插件作者：**dsh-bili-scroll** · GitHub [lll-77777777](https://github.com/lll-77777777) · B站 [@凌羽clover](https://space.bilibili.com/354813103)
+- 接口章节收敛：只讲本项目的 API / 调用格式 / 输出格式 / 记分与轴的格式规范，不再列举第三方平台
+- 术语修正：`S2-3` 是「赛季与期数」（第二赛季第 3 期）；章节标题改为「教它读懂圈内黑话」
+- 补充说明：模型走 DSH 已配置的官方通道，不需要另接第三方 API
+
 ### Known issues
 
 - HTTP 路由**未在运行中的插件里实测**（需重启 DSH 加载），字段可能调整。

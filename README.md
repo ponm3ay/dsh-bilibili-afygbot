@@ -8,9 +8,17 @@
 
 ---
 
+> **本项目基于开源插件 [`dsh-bili-scroll`](https://github.com/lll-77777777/dsh-bili-scroll) 制作。**
+>
+> 插件作者：GitHub [**lll-77777777**](https://github.com/lll-77777777) · B站 [**@凌羽clover**](https://space.bilibili.com/354813103)
+>
+> 没有这个插件就没有本项目的一切 —— 先去给作者点个 star ⭐
+
+---
+
 ## 这是什么
 
-一套**数据层**，配合开源插件 [`dsh-bili-scroll`](https://github.com/deepseek-ai/deepseek-harness) 使用。
+一套**数据层**，配合开源插件 [`dsh-bili-scroll`](https://github.com/lll-77777777/dsh-bili-scroll) 使用。
 
 插件本来会每天刷 B站、挑视频、写日报 —— 但日报是给人看的，数据死在 markdown 里。
 本项目把每一轮的结果**同时**落成结构化记录：
@@ -28,19 +36,12 @@ data/records.jsonl      # 一行一条，append-only
 
 ## 为什么做这个
 
-现有社区生态已经有一套成型的东西：
+刷凹分视频时，真正有价值的信息是**零散的** —— 配队、配置、出分、文字轴，
+散在标题、简介、评论区里，看过就忘，攒不起来。
 
-| 项目 | 做什么 |
-|---|---|
-| [椰果工坊](https://wuwa-afyg-share.200503.xyz/) | 分享「轴」的工程文件（工程 + 分享码） |
-| [椰果工具箱](https://github.com/d4rkOfficial/wuwa-afyg-tool) | 导入工程、算轴、看 DPS |
-| [椰果站](https://www.wuwagoat.com/) | 成绩档案（队伍 / 链阶 / 秒数） |
-| [工坊 API](https://github.com/d4rkOfficial/wuwa-afyg-share/blob/master/docs/api.md) | 工程广场 / Buff 集 / 词条集 |
+本项目补的就是这一头：**「从视频里扒出实际有人打出了什么」** —— 实战样本。
 
-它们擅长**「已知配置 → 算出理论值」**。
-本项目补的是另一头：**「从视频里扒出实际有人打出了什么」** —— 配队、配置、出分、文字轴、UP 出处。
-
-两者是互补的：一个管上限推演，一个管实战样本。
+数据落在本地，接口开在本地，**你攒的样本是你自己的**。
 
 ---
 
@@ -250,7 +251,7 @@ python src/afyg.py serve    --port 8787
 
 ## 许可
 
-[MIT](LICENSE) · 基于 [`dsh-bili-scroll`](https://github.com/deepseek-ai/deepseek-harness)（MIT）
+[MIT](LICENSE) · 基于 [`dsh-bili-scroll`](https://github.com/lll-77777777/dsh-bili-scroll)（MIT）
 
 ---
 
